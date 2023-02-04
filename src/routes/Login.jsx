@@ -27,7 +27,7 @@ const Login = () => {
         return
       }
       const verifiedUser = {
-        name: user?.name,
+        name: user?.username,
         email: user?.email,
         address: user?.address?.city,
         phone: user?.phone,

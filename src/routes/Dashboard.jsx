@@ -36,7 +36,7 @@ const Dashboard = () => {
     const result = temp.map((it) => {
       return {
         ...it,
-        userName: users.find((user) => user.id === it.userId).name,
+        userName: users.find((user) => user.id === it.userId).username,
       }
     })
     setShowPosts(result)
