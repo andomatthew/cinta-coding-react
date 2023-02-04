@@ -1,4 +1,4 @@
-import React from "react"
+import React, { useState } from "react"
 
 import { HiArrowLeft } from "react-icons/hi"
 
@@ -6,6 +6,8 @@ import { useNavigate } from "react-router-dom"
 
 const Profile = () => {
   const navigate = useNavigate()
+
+  const [user] = useState(JSON.parse(localStorage.getItem("user")))
 
   return (
     <div className="max-w-xl mt-8 mx-auto flex flex-col gap-y-8">
@@ -33,10 +35,10 @@ const Profile = () => {
           </div>
         </div>
         <div className="flex flex-col gap-y-8">
-          <p>Kelingkingmaut</p>
-          <p>andomatthew@mail.com</p>
-          <p>Tangerang, Banten</p>
-          <p>1234567890</p>
+          <p>{user?.name}</p>
+          <p>{user?.email}</p>
+          <p>{user.address}</p>
+          <p>{user?.phone}</p>
         </div>
       </div>
     </div>

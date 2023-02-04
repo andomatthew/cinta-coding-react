@@ -5,7 +5,7 @@ import { useNavigate } from "react-router-dom"
 const Navbar = () => {
   const navigate = useNavigate()
 
-  const [user, setUser] = useState(localStorage.getItem("username"))
+  const [user, setUser] = useState(JSON.parse(localStorage.getItem("user")))
   const [showButton, setShowButton] = useState(false)
 
   const handleClick = () => {
@@ -37,7 +37,7 @@ const Navbar = () => {
       <div className="relative">
         <button onClick={() => setShowButton(!showButton)}>
           <h3 className="text-xl font-bold">
-            Welcome, <span className="text-blue-400">{user}</span>
+            Welcome, <span className="text-blue-400">{user?.name}</span>
           </h3>
         </button>
         {!!showButton && (
