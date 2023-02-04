@@ -1,6 +1,8 @@
-import React, { useEffect, useState } from "react"
+import React, { useContext, useEffect, useState } from "react"
 
 import { useNavigate } from "react-router-dom"
+
+import { DataContext } from "../context/DataContext"
 
 const Login = () => {
   const navigate = useNavigate()
@@ -8,15 +10,7 @@ const Login = () => {
   const [error, setError] = useState("")
   const [username, setUsername] = useState("")
   const [password, setPassword] = useState("")
-
-  const fetchUsers = async () => {
-    const res = await fetch("https://jsonplaceholder.typicode.com/users")
-    if (res.ok) {
-      return await res.json()
-    } else {
-      setError("ups, something went wrong")
-    }
-  }
+  const users = useContext(DataContext)
 
   const isValid = () => {
     if (username === password) return true
@@ -26,8 +20,7 @@ const Login = () => {
   const handleSubmit = async (e) => {
     e.preventDefault()
     if (isValid()) {
-      const data = await fetchUsers()
-      const user = data.find((it) => it?.username === username)
+      const user = users.find((it) => it?.username === username)
 
       if (!user) {
         setError("cannot found username")
