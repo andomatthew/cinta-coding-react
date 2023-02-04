@@ -1,10 +1,22 @@
 import React from "react"
 
+import { useNavigate } from "react-router-dom"
+
 const Login = () => {
+  const navigate = useNavigate()
+
+  const handleSubmit = () => {
+    localStorage.setItem("username", "Alex")
+    navigate("/dashboard")
+  }
+
   return (
     <div className="max-w-xs mx-auto h-screen w-full flex flex-col justify-center items-center">
       <h3 className="text-lg font-semibold">Login Page</h3>
-      <form className="mt-16 flex flex-col gap-y-8 w-full">
+      <form
+        onSubmit={handleSubmit}
+        className="mt-16 flex flex-col gap-y-8 w-full"
+      >
         <input
           type="text"
           placeholder="username"
