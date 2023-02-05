@@ -25,7 +25,7 @@ const Detail = () => {
     }
     fetchPost()
     setUser(users?.find((oneUser) => oneUser.id == post?.userId))
-  }, [users, post])
+  }, [users])
 
   return (
     !!post && (
