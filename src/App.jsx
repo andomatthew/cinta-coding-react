@@ -6,10 +6,39 @@ import Login from "./routes/Login"
 import NoMatch from "./routes/NoMatch"
 import Home from "./routes/Home"
 
-import { Routes, Route, Outlet } from "react-router-dom"
+import {
+  Routes,
+  Route,
+  Outlet,
+  useLocation,
+  useNavigate,
+  useParams,
+} from "react-router-dom"
 import DataContext from "./context/DataContext"
+import { useEffect } from "react"
 
 function App() {
+  const location = useLocation()
+  const navigate = useNavigate()
+  const { id } = useParams()
+
+  useEffect(() => {
+    const isLoggedIn = !!localStorage.getItem("user")
+    const privateRoutesPathname = ["/dashboard", "/profile", `/posts/${id}`]
+    const publicRoutesPathname = ["/login", "/"]
+    if (isLoggedIn) {
+      publicRoutesPathname.forEach((route) => {
+        if (location.pathname === route) navigate("/dashboard")
+      })
+    } else {
+      privateRoutesPathname.forEach((route) => {
+        if (location.pathname === route) {
+          navigate("/login")
+        }
+      })
+    }
+  }, [location])
+
   return (
     <DataContext>
       <Routes>

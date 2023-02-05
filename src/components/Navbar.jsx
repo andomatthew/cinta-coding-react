@@ -15,7 +15,12 @@ const Navbar = () => {
 
   return (
     <nav className="flex justify-between items-center py-4">
-      <h3 className="text-xl font-bold">Cinta Coding</h3>
+      <h3
+        onClick={() => navigate("/dashboard")}
+        className="text-xl font-bold cursor-pointer"
+      >
+        Cinta Coding
+      </h3>
       {!!user && <PostText />}
       {!!user ? <ButtonUser /> : <ButtonLogin />}
     </nav>
