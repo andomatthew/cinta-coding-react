@@ -9,6 +9,11 @@ const Profile = () => {
 
   const [user] = useState(JSON.parse(localStorage.getItem("user")))
 
+  const handleClick = () => {
+    localStorage.removeItem("user")
+    navigate("/login")
+  }
+
   return (
     <div className="max-w-xl mt-8 mx-auto flex flex-col gap-y-8">
       <HiArrowLeft
@@ -41,6 +46,13 @@ const Profile = () => {
           <p>{user?.phone}</p>
         </div>
       </div>
+
+      <button
+        onClick={handleClick}
+        className="border bg-blue-300 hover:bg-blue-500 text-white py-2 rounded-full w-full max-w-md mx-auto"
+      >
+        Logout
+      </button>
     </div>
   )
 }
